@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RestController
 public class EmployeeController {
 
-    @Value("${security.name}")
-    private String securityName;
+    private final String securityName;
+
+    public EmployeeController(@Value("${security.name}") String securityName) {
+        this.securityName = securityName;
+    }
 
     @GetMapping("/employee")
     public String employee() {
